@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HUSApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><a href="/questions">Home</a></li>
+        <% if !current_user %>
+        <li role="presentation"><%= link_to "Sign Up", signup_path %></li>
+        <% end %>
+        <% if current_user %>
+          <li role="presentation"><%= link_to "Logout", "#", class:"logout_button" %></li>
+        <% else %>
+          <li role="presentation"><%= link_to "Login", login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <h3 class="text-muted">Heap Under Stagnation</h3>
+</div>
+<%= yield %>
+  <footer class="footer">
+    <p>&copy; Heap Under Stagnation 2015</p>
+  </footer>
+</div>
+</body>
+</html>
+
+
+

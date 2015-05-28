@@ -1,0 +1,9 @@
+<%= form_for([@question, @answer || @question.answers.new ], remote: true) do |f| %>
+  <p>
+    <%= f.label "Your answer: " %><br>
+    <%= f.text_area :content, :class => 'answer_text_area' %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

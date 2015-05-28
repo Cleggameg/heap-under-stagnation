@@ -1,0 +1,10 @@
+<%= form_for([@question, @comment || @question.comments.new], remote: true)  do |f| %>
+  <p>
+    <%= f.label "Your comment: " %><br>
+    <%= f.text_area :content, :class => 'comment_text_area'%>
+  </p>
+    <input type="hidden" value=<%=@user.id%> name="comment[user_id]"/>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

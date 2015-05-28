@@ -1,0 +1,52 @@
+<a href="/questions/<%=@question.id%>/voteup" class="glyphicon glyphicon-thumbs-up question_up"></a>
+<a href="/questions/<%=@question.id%>/votedown" class="glyphicon glyphicon-thumbs-down question_down"></a>
+<div class="question_vote_count">
+  <%= render 'votes/vote_div' %>
+</div>
+
+<div class="question_body">
+  <h1><%= @question.title %></h1>
+  <p><strong>Author: </strong><%= @question.asker.username %></p>
+  <p><%= @question.content %></p>
+</div>
+<h3>Comments: </h3>
+<div class="question_comment_list">
+  <%= render @question.comments %>
+</div>
+
+<% if session[:user_id]!=nil %>
+<div class="hidden_form">
+  <h2>Add a Comment</h2>
+  <%= render 'comments/form' %>
+</div>
+<% end %>
+
+
+<% if @question.asker == @user %>
+<%= link_to("Edit Question", edit_question_path(@question)) %>
+<% end %>
+<br><br>
+
+
+
+<h2>Answers:</h2>
+<div id="answer_list">
+  <%= render @question.answers.sort_by{|answer| answer.total_votes}.reverse %>
+
+
+  <% if session[:user_id]!=nil %>
+  <div class="hidden_form">
+    <h2>Add an Answer</h2>
+    <%= render 'answers/form' %>
+  </div>
+  <% end %>
+  <%= form_tag("/questions", :controller=>"users", :method=>"get") do %>
+  <%= submit_tag "Back" %>
+  <% end %>
+
+
+
+
+
+
+
